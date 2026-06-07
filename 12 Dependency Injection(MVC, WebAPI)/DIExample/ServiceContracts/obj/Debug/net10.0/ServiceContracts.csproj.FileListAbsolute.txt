@@ -1,0 +1,11 @@
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\bin\Debug\net10.0\ServiceContracts.deps.json
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\bin\Debug\net10.0\ServiceContracts.dll
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\bin\Debug\net10.0\ServiceContracts.pdb
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ServiceContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ServiceContracts.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ServiceContracts.AssemblyInfo.cs
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ServiceContracts.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ServiceContracts.dll
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\refint\ServiceContracts.dll
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ServiceContracts.pdb
+C:\Users\DELL\Desktop\DOT NET\.NET Core\12 Dependency Injection(MVC, WebAPI)\DIExample\ServiceContracts\obj\Debug\net10.0\ref\ServiceContracts.dll

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CRUDExample/CRUDExample.csproj" />
+  <Project Path="CrudTest/CrudTest.csproj" />
+  <Project Path="Entities/Entities.csproj" Id="f3ebd639-1bb1-4d6c-ab24-111acea00afb" />
+  <Project Path="ServiceContracts/ServiceContracts.csproj" Id="2bc56e7d-2535-4aca-9e3c-e31b3ba0089b" />
+  <Project Path="Services/Services.csproj" Id="19c12339-c75c-431d-9854-f89aa750a7a6" />
+</Solution>
