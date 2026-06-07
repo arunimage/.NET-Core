@@ -96,7 +96,7 @@ namespace CrudTest
         }
         #endregion
 
-        #region
+        #region GetAllCountries
         [Fact]
         //The list of the countries should be empty by default (before adding any countries)
         public void GetAllCountries_EmptyList()
@@ -126,15 +126,48 @@ namespace CrudTest
             {
                 countries_List_from_add_country.Add(_countriesService.AddCountry(country_request));
             }
-           List<CountryResponse> actualCountryResponseList = _countriesService.GetAllCountries();
+            List<CountryResponse> actualCountryResponseList = _countriesService.GetAllCountries();
             //Read all element from countries_list_from_add_country
             foreach (CountryResponse expectedCountry in countries_List_from_add_country)
             {
                 Assert.Contains(expectedCountry, actualCountryResponseList);
             }
-
+        }
 
         #endregion
+
+
+        #region GetCountryByCountryID
+
+        [Fact]
+        // If we supply null as CountryID, it should return null as CountryResponse
+        public void GetCountryByCountryID_NullCountryID()
+        {
+            //Arrange
+            Guid? countryID = null;
+
+            //Act
+            CountryResponse? country_response_from_get_method = _countriesService.GetCountryByCountryID(countryID);
+
+            //Act
+            Assert.Null(country_response_from_get_method);
         }
+
+        [Fact]
+        //If we supply a valid countryID, it should return the matching country details as CountryResponse object
+        public void GetCountryByCountryID_ValidCountryID()
+        {
+            //Arrange
+            CountryAddRequest? country_add_request = new CountryAddRequest()
+            {
+                CountryName = "China"
+            };
+            CountryResponse country_response_from_add = _countriesService.AddCountry(country_add_request);
+
+            //Act
+            CountryResponse? country_response_from_get = _countriesService.GetCountryByCountryID(country_response_from_add.CountryID);
+            Assert.Equal(country_response_from_add, country_response_from_get);
+        }
+        #endregion
     }
 }
