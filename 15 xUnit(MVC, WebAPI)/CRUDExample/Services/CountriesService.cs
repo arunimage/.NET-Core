@@ -52,9 +52,5 @@ namespace Services
         {
            return _countries.Select(country => country.ToCountryResponse()).ToList();
         }
-       public List<CountryResponse> GetAllCountries254()
-       {
-       return _countries.Select(country => country.ToCountryResponse()).ToList();
-       }
     }
 }

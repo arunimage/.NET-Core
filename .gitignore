@@ -1,0 +1,14 @@
+.vs/
+**/.vs/
+
+bin/
+**/bin/
+
+obj/
+**/obj/
+
+ProjectEvaluation/
+**/ProjectEvaluation/
+
+*.user
+*.suo

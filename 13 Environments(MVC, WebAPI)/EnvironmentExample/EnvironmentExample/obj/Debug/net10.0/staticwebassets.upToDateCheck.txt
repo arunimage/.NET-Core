@@ -1,2 +1,0 @@
-wwwroot\StyleSheet.css
-C:\Users\DELL\Desktop\DOT NET\.NET Core\13 Environments(MVC, WebAPI)\EnvironmentExample\EnvironmentExample\wwwroot\StyleSheet.css
