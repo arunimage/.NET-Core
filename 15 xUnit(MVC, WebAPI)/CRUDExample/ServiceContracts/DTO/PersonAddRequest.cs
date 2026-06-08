@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Entities;
 using ServiceContracts.Enums;
@@ -11,8 +12,13 @@ namespace ServiceContracts.DTO
     /// </summary>
     public class PersonAddRequest
     {
+        [Required(ErrorMessage = "Person Name can't be blank")]
         public string? PersonName { get; set; }
+
+        [Required(ErrorMessage = "Email can't be blank")]
+        [EmailAddress(ErrorMessage = "Email should be a valid email")]
         public string? Email { get; set; }
+
         public DateTime? DateOfBirth { get; set; }
         public GenderOptions? Gender { get; set; }
         public Guid? CountryID { get; set; }
@@ -23,7 +29,7 @@ namespace ServiceContracts.DTO
         /// Converts the current object of PersonAddRequest into a new object of Person type
         /// </summary>
         /// <returns></returns>
-        public  Person ToPerson()
+        public Person ToPerson()
         {
             return new Person()
             {
