@@ -16,7 +16,7 @@ namespace CRUDExample.Controllers
 
 
         //constructor
-        public PersonsController(IPersonsService personsService,ICountriesService countriesService)
+        public PersonsController(IPersonsService personsService, ICountriesService countriesService)
         {
             _personsService = personsService;
             _countriesService = countriesService;
@@ -24,7 +24,7 @@ namespace CRUDExample.Controllers
 
         [Route("[action]")]
         [Route("/")]
-        public IActionResult Index(string searchBy, string? searchString,string sortBy=nameof(PersonResponse.PersonName), SortOrderOptions sortOrder=SortOrderOptions.ASC )
+        public IActionResult Index(string searchBy, string? searchString, string sortBy = nameof(PersonResponse.PersonName), SortOrderOptions sortOrder = SortOrderOptions.ASC)
         {
             //Searching
             ViewBag.SearchFields = new Dictionary<string, string>()
@@ -36,7 +36,7 @@ namespace CRUDExample.Controllers
                 {nameof(PersonResponse.CountryID) ,"Country"},
                 {nameof(PersonResponse.Address) ,"Address"},
             };
-            List<PersonResponse> person = _personsService.GetFilteredPersons(searchBy,searchString);
+            List<PersonResponse> person = _personsService.GetFilteredPersons(searchBy, searchString);
 
             ViewBag.CurrentSearchBy = searchBy;
             ViewBag.CurrentSearchString = searchString;
@@ -81,7 +81,79 @@ namespace CRUDExample.Controllers
             PersonResponse personResponse = _personsService.AddPerson(personAddRequest);
 
             //navigate to Index() action method (it makes another get request to "persons/index")
-            return RedirectToAction("Index","Persons");
+            return RedirectToAction("Index", "Persons");
+        }
+
+
+        [HttpGet]
+        [Route("[action]/{personID}")]
+        public IActionResult Edit(Guid personID)
+        {
+            PersonResponse? personResponse = _personsService.GetPersonByPersonID(personID);
+            if (personResponse == null)
+            {
+                return RedirectToAction("Index");
+            }
+            PersonUpdateRequest personUpdateRequest = personResponse.ToPersonUpdateRequest();
+
+            List<CountryResponse> countries = _countriesService.GetAllCountries();
+
+            ViewBag.Countries = countries.Select(temp => new SelectListItem() { Text = temp.CountryName, Value = temp.CountryID.ToString() });
+
+            return View(personUpdateRequest);
+        }
+
+
+        [HttpPost]
+        [Route("[action]/{personID}")]
+        public IActionResult Edit(PersonUpdateRequest personUpdateRequest)
+        {
+            PersonResponse? personResponse = _personsService.GetPersonByPersonID(personUpdateRequest.PersonID);
+            if (personResponse == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            if (ModelState.IsValid)
+            {
+                PersonResponse updatePerson = _personsService.UpdatePerson(personUpdateRequest);
+                return RedirectToAction("Index");
+            }
+
+            List<CountryResponse> countries = _countriesService.GetAllCountries();
+            ViewBag.Countries = countries;
+
+            ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToList();
+
+            return View(personResponse.ToPersonUpdateRequest());
+        }
+
+        [HttpGet]
+        [Route("[action]/{personID}")]
+        public IActionResult Delete(Guid personID)
+        {
+            PersonResponse? personResponse = _personsService.GetPersonByPersonID(personID);
+            if (personResponse == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(personResponse);
+        }
+
+
+        [HttpPost]
+        [Route("[action]/{personID}")]
+        public IActionResult Delete(PersonUpdateRequest personUpdateResult)
+        {
+            PersonResponse? personResponse = _personsService.GetPersonByPersonID(personUpdateResult.PersonID);
+            if (personResponse == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            _personsService.DeletePerson(personUpdateResult.PersonID);
+
+            return RedirectToAction("Index");
         }
     }
 }
