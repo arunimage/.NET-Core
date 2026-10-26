@@ -5,6 +5,8 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrudTest
 {
@@ -13,7 +15,7 @@ namespace CrudTest
         private readonly ICountriesService _countriesService;
         public CountriesServiceTest()
         {
-            _countriesService = new CountriesService(false);
+            _countriesService = new CountriesService(new PersonsDbContext(new DbContextOptionsBuilder<PersonsDbContext>().Options));
         }
 
         #region AddCountry

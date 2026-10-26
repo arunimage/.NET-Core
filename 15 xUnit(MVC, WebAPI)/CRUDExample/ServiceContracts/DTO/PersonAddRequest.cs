@@ -44,6 +44,7 @@ namespace ServiceContracts.DTO
                 DateOfBirth = DateOfBirth,
                 Gender = Gender.ToString(),
                 Address = Address,
+                CountryID=CountryID,
                 ReceiveNewsLetters = ReceiveNewsLetters
             };
         }
