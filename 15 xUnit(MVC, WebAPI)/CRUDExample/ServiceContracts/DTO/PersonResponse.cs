@@ -53,7 +53,7 @@ namespace ServiceContracts.DTO
             return $"Person ID: {PersonID}, Person Name:{PersonName}, Email: {Email}, Date of Birth: {DateOfBirth?.ToString("dd mm yyyy")}, Gender: {Gender}, Country ID: {CountryID}, Country: {Country}, Address: {Address}, Receive News Letters:{ReceiveNewsLetters}";
         }
 
-       public PersonUpdateRequest ToPersonUpdateRequest()
+        public PersonUpdateRequest ToPersonUpdateRequest()
         {
             return new PersonUpdateRequest()
             {
@@ -88,9 +88,9 @@ namespace ServiceContracts.DTO
                 CountryID = person.CountryID,
                 Address = person.Address,
                 ReceiveNewsLetters = person.ReceiveNewsLetters,
-                Age = (person.DateOfBirth != null) ? Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null
+                Age = (person.DateOfBirth != null) ? Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null,
+                Country = person.Country?.CountryName
             };
         }
     }
-
 }

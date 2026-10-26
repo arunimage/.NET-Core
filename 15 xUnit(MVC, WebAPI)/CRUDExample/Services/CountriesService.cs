@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
 
@@ -15,7 +16,7 @@ namespace Services
             _db = personsDbContext;
         }
 
-        public CountryResponse AddCountry(CountryAddRequest? countryAddRequest)
+        public async Task<CountryResponse> AddCountry(CountryAddRequest? countryAddRequest)
         {
             //Validation: CountryAddRequestParameter can't be null
             if (countryAddRequest == null)
@@ -30,7 +31,7 @@ namespace Services
             }
 
             //Validation: CountryName can't be duplicate
-            if (_db.Countries.Count(temp =>
+            if (await _db.Countries.CountAsync(temp =>
             temp.CountryName == countryAddRequest.CountryName) > 0)
             {
                 throw new ArgumentException("Given CountryName is Already Present");
@@ -44,23 +45,23 @@ namespace Services
 
             //Add Country object into _countries
             _db.Countries.Add(country);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return country.ToCountryResponse();
         }
 
-        public List<CountryResponse> GetAllCountries()
+        public async Task<List<CountryResponse>> GetAllCountries()
         {
-            return _db.Countries.Select(country => country.ToCountryResponse()).ToList();
+            return await _db.Countries.Select(country => country.ToCountryResponse()).ToListAsync();
         }
 
-        public CountryResponse? GetCountryByCountryID(Guid? countryID)
+        public async Task<CountryResponse?> GetCountryByCountryID(Guid? countryID)
         {
             if (countryID == null)
             {
                 return null;
             }
-            Country? country_response_from_list = _db.Countries.FirstOrDefault(temp => temp.CountryID == countryID);
+            Country? country_response_from_list = await _db.Countries.FirstOrDefaultAsync(temp => temp.CountryID == countryID);
 
 
             if (country_response_from_list == null)
