@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RepositoryContracts;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -16,11 +17,13 @@ namespace Services
     {
         //private field
         private readonly IPersonsRepository _personsRepository;
+        private readonly ILogger<PersonsService> _logger;
 
         //constructor
-        public PersonsService(IPersonsRepository personsRepository)
+        public PersonsService(IPersonsRepository personsRepository, ILogger<PersonsService> logger)
         {
             _personsRepository = personsRepository;
+            _logger = logger;
         }
 
         public async Task<PersonResponse> AddPerson(PersonAddRequest? personAddRequest)
@@ -53,6 +56,8 @@ namespace Services
 
         public async Task<List<PersonResponse>> GetAllPersons()
         {
+            _logger.LogInformation("GetAllPersons of PersonService");
+
             //SELECT * from Persons
             var persons = await _personsRepository.GetAllPersons();
 
@@ -83,6 +88,8 @@ namespace Services
 
         public async Task<List<PersonResponse>> GetFilteredPersons(string searchBy, string? searchString)
         {
+            _logger.LogInformation("GetFilteredPersons of PersonService");
+
             List<Person> persons = searchBy switch
             {
                 nameof(PersonResponse.PersonName) =>
@@ -110,6 +117,8 @@ namespace Services
 
         public async Task<List<PersonResponse>> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder)
         {
+            _logger.LogInformation("GetSortedPersons of PersonService");
+
             if (string.IsNullOrEmpty(sortBy))
             {
                 return allPersons;

@@ -13,6 +13,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.5.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 
@@ -22,6 +23,10 @@
     <ProjectReference Include="..\RepositoryContracts\RepositoryContracts.csproj" />
     <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>
