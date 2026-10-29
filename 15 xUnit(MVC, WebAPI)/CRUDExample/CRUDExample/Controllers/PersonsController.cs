@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CRUDExample.Filters.ActionFilters;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rotativa.AspNetCore;
 using ServiceContracts;
@@ -17,7 +18,7 @@ namespace CRUDExample.Controllers
         private readonly ILogger<PersonsController> _logger;
 
         //constructor
-        public PersonsController(IPersonsService personsService, ICountriesService countriesService,ILogger<PersonsController> logger)
+        public PersonsController(IPersonsService personsService, ICountriesService countriesService, ILogger<PersonsController> logger)
         {
             _personsService = personsService;
             _countriesService = countriesService;
@@ -26,6 +27,7 @@ namespace CRUDExample.Controllers
 
         [Route("[action]")]
         [Route("/")]
+        [TypeFilter(typeof(PersonsListActionFilter))]
         public async Task<IActionResult> Index(string searchBy, string? searchString, string sortBy = nameof(PersonResponse.PersonName), SortOrderOptions sortOrder = SortOrderOptions.ASC)
         {
             _logger.LogInformation("Index action method for PersonsController");
