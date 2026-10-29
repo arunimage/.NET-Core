@@ -1,0 +1,150 @@
+2026-10-30 00:14:45.294 +05:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-30 00:14:45.522 +05:30 [INF] Now listening on: http://localhost:5049
+2026-10-30 00:14:45.560 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-30 00:14:45.562 +05:30 [INF] Hosting environment: Development
+2026-10-30 00:14:45.563 +05:30 [INF] Content root path: C:\Users\DELL\Desktop\DOT NET\.NET-Core\15 xUnit(MVC, WebAPI)\CRUDExample\CRUDExample
+2026-10-30 00:14:46.515 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/ - null null
+2026-10-30 00:14:46.631 +05:30 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: http
+PathBase: 
+Path: /
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Connection: keep-alive
+Host: localhost:5049
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+Sec-Fetch-Site: [Redacted]
+Sec-Fetch-Mode: [Redacted]
+Sec-Fetch-User: [Redacted]
+Sec-Fetch-Dest: [Redacted]
+2026-10-30 00:14:46.650 +05:30 [INF] Executing endpoint 'CRUDExample.Controllers.PersonsController.Index (CRUDExample)'
+2026-10-30 00:14:46.686 +05:30 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrderOptions) on controller CRUDExample.Controllers.PersonsController (CRUDExample).
+2026-10-30 00:14:46.809 +05:30 [INF] Index action method for PersonsController
+2026-10-30 00:14:46.842 +05:30 [INF] GetFilteredPersons of PersonService
+2026-10-30 00:14:46.843 +05:30 [INF] GetAllPersons of PersonsRepository
+2026-10-30 00:14:48.878 +05:30 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonID], [p].[Address], [p].[CountryID], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[PersonName], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[CountryID], [c].[CountryName]
+FROM [Persons] AS [p]
+LEFT JOIN [Countries] AS [c] ON [p].[CountryID] = [c].[CountryID]
+2026-10-30 00:14:48.977 +05:30 [INF] GetSortedPersons of PersonService
+2026-10-30 00:14:48.992 +05:30 [INF] Executing ViewResult, running view Index.
+2026-10-30 00:14:49.135 +05:30 [INF] Executed ViewResult - view Index executed in 144.6626ms.
+2026-10-30 00:14:49.140 +05:30 [INF] Executed action CRUDExample.Controllers.PersonsController.Index (CRUDExample) in 2451.4667ms
+2026-10-30 00:14:49.143 +05:30 [INF] Executed endpoint 'CRUDExample.Controllers.PersonsController.Index (CRUDExample)'
+2026-10-30 00:14:49.143 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-30 00:14:49.145 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/_vs/browserLink - null null
+2026-10-30 00:14:49.146 +05:30 [INF] Response:
+StatusCode: 200
+Content-Type: text/html; charset=utf-8
+Date: Thu, 29 Oct 2026 18:44:48 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2026-10-30 00:14:49.151 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/_framework/aspnetcore-browser-refresh.js - 200 14927 application/javascript; charset=utf-8 7.038ms
+2026-10-30 00:14:49.164 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/ - 200 null text/html; charset=utf-8 2656.4761ms
+2026-10-30 00:14:49.178 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.6585ms
+2026-10-30 00:14:49.209 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/favicon.ico - null null
+2026-10-30 00:14:49.212 +05:30 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: http
+PathBase: 
+Path: /favicon.ico
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Connection: keep-alive
+Host: localhost:5049
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Referer: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+Sec-Fetch-Site: [Redacted]
+Sec-Fetch-Mode: [Redacted]
+Sec-Fetch-Dest: [Redacted]
+2026-10-30 00:14:49.215 +05:30 [INF] Response:
+StatusCode: 404
+2026-10-30 00:14:49.216 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/favicon.ico - 404 0 null 7.2125ms
+2026-10-30 00:14:49.220 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5049/favicon.ico, Response status code: 404
+2026-10-30 00:15:55.548 +05:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-30 00:15:55.686 +05:30 [INF] Now listening on: http://localhost:5049
+2026-10-30 00:15:55.723 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-30 00:15:55.724 +05:30 [INF] Hosting environment: Development
+2026-10-30 00:15:55.725 +05:30 [INF] Content root path: C:\Users\DELL\Desktop\DOT NET\.NET-Core\15 xUnit(MVC, WebAPI)\CRUDExample\CRUDExample
+2026-10-30 00:15:56.315 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/ - null null
+2026-10-30 00:15:56.422 +05:30 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: http
+PathBase: 
+Path: /
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Connection: keep-alive
+Host: localhost:5049
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+Sec-Fetch-Site: [Redacted]
+Sec-Fetch-Mode: [Redacted]
+Sec-Fetch-User: [Redacted]
+Sec-Fetch-Dest: [Redacted]
+2026-10-30 00:15:56.440 +05:30 [INF] Executing endpoint 'CRUDExample.Controllers.PersonsController.Index (CRUDExample)'
+2026-10-30 00:15:56.474 +05:30 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrderOptions) on controller CRUDExample.Controllers.PersonsController (CRUDExample).
+2026-10-30 00:15:56.600 +05:30 [INF] Index action method for PersonsController
+2026-10-30 00:15:56.641 +05:30 [INF] GetFilteredPersons of PersonService
+2026-10-30 00:15:56.643 +05:30 [INF] GetAllPersons of PersonsRepository
+2026-10-30 00:15:57.720 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonID], [p].[Address], [p].[CountryID], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[PersonName], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[CountryID], [c].[CountryName]
+FROM [Persons] AS [p]
+LEFT JOIN [Countries] AS [c] ON [p].[CountryID] = [c].[CountryID]
+2026-10-30 00:15:57.837 +05:30 [INF] GetSortedPersons of PersonService
+2026-10-30 00:15:57.854 +05:30 [INF] Executing ViewResult, running view Index.
+2026-10-30 00:15:58.001 +05:30 [INF] Executed ViewResult - view Index executed in 147.8203ms.
+2026-10-30 00:15:58.006 +05:30 [INF] Executed action CRUDExample.Controllers.PersonsController.Index (CRUDExample) in 1529.7171ms
+2026-10-30 00:15:58.010 +05:30 [INF] Executed endpoint 'CRUDExample.Controllers.PersonsController.Index (CRUDExample)'
+2026-10-30 00:15:58.010 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-30 00:15:58.012 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/_vs/browserLink - null null
+2026-10-30 00:15:58.012 +05:30 [INF] Response:
+StatusCode: 200
+Content-Type: text/html; charset=utf-8
+Date: Thu, 29 Oct 2026 18:45:57 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2026-10-30 00:15:58.018 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/_framework/aspnetcore-browser-refresh.js - 200 14927 application/javascript; charset=utf-8 7.89ms
+2026-10-30 00:15:58.031 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/ - 200 null text/html; charset=utf-8 1724.1258ms
+2026-10-30 00:15:58.045 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.8557ms
+2026-10-30 00:15:58.080 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5049/favicon.ico - null null
+2026-10-30 00:15:58.084 +05:30 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: http
+PathBase: 
+Path: /favicon.ico
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Connection: keep-alive
+Host: localhost:5049
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Referer: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+Sec-Fetch-Site: [Redacted]
+Sec-Fetch-Mode: [Redacted]
+Sec-Fetch-Dest: [Redacted]
+2026-10-30 00:15:58.087 +05:30 [INF] Response:
+StatusCode: 404
+2026-10-30 00:15:58.088 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5049/favicon.ico - 404 0 null 8.4988ms
+2026-10-30 00:15:58.092 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5049/favicon.ico, Response status code: 404
