@@ -12,27 +12,36 @@ var builder = WebApplication.CreateBuilder(args);
 //Serilog
 builder.Host.UseSerilog((context, services, loggerConfiguration) =>
 {
-    loggerConfiguration
-        .ReadFrom.Configuration(context.Configuration)      //read configuration settings from built-in Iconfiguration
-        .ReadFrom.Services(services);           //Read out current app's service and make them available to serilog
+  loggerConfiguration
+      .ReadFrom.Configuration(context.Configuration)      //read configuration settings from built-in Iconfiguration
+      .ReadFrom.Services(services);           //Read out current app's service and make them available to serilog
 });
+
+builder.Services.AddTransient<PersonsListActionFilter>();
 
 // Register HTTP logging services
 builder.Services.AddHttpLogging(options =>
 {
-    options.LoggingFields =
-        Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestPropertiesAndHeaders |
-        Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders;
+  options.LoggingFields =
+      Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestPropertiesAndHeaders |
+      Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders;
 });
+
+builder.Services.AddTransient<ResponseHeaderActionFilter>();
 
 //It adds controllers and views as services
 builder.Services.AddControllersWithViews(options =>
 {
-    //options.Filters.Add<ResponseHeaderActionFilter>(5);
+  //options.Filters.Add<ResponseHeaderActionFilter>();
 
-    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<ResponseHeaderActionFilter>>();
+  var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<ResponseHeaderActionFilter>>();
 
-    options.Filters.Add(new ResponseHeaderActionFilter(logger, "My-Key-From-Global", "My-Value-From-Global", 2));
+  options.Filters.Add(new ResponseHeaderActionFilter(logger)
+  {
+    Key = "My-Key-From-Global",
+    Value = "My-Value-From-Global",
+    Order = 2
+  });
 });
 
 //add services into IoC container
@@ -43,14 +52,14 @@ builder.Services.AddScoped<IPersonsRepository, PersonsRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
+  app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpLogging();
