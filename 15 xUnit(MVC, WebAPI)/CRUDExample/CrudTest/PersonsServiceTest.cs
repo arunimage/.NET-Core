@@ -1,21 +1,23 @@
 ﻿using AutoFixture;
+using AutoFixture.Kernel;
 using Entities;
 using EntityFrameworkCoreMock;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Moq;
 using RepositoryContracts;
+using Serilog;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
 using Services;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection.Metadata;
 using System.Text;
 using Xunit.Abstractions;
-using FluentAssertions;
-using AutoFixture.Kernel;
-using System.Linq.Expressions;
 
 namespace CrudTest
 {
@@ -28,14 +30,16 @@ namespace CrudTest
         private readonly IFixture _fixture;
         public PersonsServiceTest(ITestOutputHelper testOutputHelper)
         {
-            _fixture = new Fixture();
-            _personsRepositoryMock = new Mock<IPersonsRepository>();
-            _personsRepository = _personsRepositoryMock.Object;
+      _fixture = new Fixture();
+      _personsRepositoryMock = new Mock<IPersonsRepository>();
+      _personsRepository = _personsRepositoryMock.Object;
 
-            _personService = new PersonsService(_personsRepository);
+      var loggerMock = new Mock<ILogger<PersonsService>>();
 
-            _testOutputHelper = testOutputHelper;
-        }
+      _personService = new PersonsService(_personsRepository, loggerMock.Object);
+
+      _testOutputHelper = testOutputHelper;
+    }
 
         #region AddPerson
         //When we supply null value as PersonAddRequest, it should throw ArgumentNullException

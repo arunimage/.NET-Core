@@ -64,7 +64,7 @@ namespace CRUDExample.Controllers
     //Url: persons/create
     [Route("[action]")]
     [HttpGet]
-    [TypeFilter(typeof(ResponseHeaderActionFilter), Arguments = new object[] { "my-key", "my-value", 4 })]
+    [ResponseHeaderFilterFactory("my-key", "my-value", 4)]
     public async Task<IActionResult> Create()
     {
       List<CountryResponse> countries = await _countriesService.GetAllCountries();
