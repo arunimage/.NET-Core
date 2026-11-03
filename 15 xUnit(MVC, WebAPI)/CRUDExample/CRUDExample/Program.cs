@@ -7,6 +7,7 @@ using Repositories;
 using Serilog;
 using CRUDExample.Filters.ActionFilters;
 using CRUDExample;
+using CRUDExample.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,14 +21,19 @@ builder.Host.UseSerilog((context, services, loggerConfiguration) =>
       .ReadFrom.Services(services);           //Read out current app's service and make them available to serilog
 });
 
-
-
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
 {
   app.UseDeveloperExceptionPage();
 }
+else
+{
+  app.UseExceptionHandler("/Error");
+  app.UseExceptionHandlingMiddleware();
+}
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpLogging();
 
